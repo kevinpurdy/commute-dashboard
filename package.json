@@ -4,9 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npx jest",
-    "build": "npx tsc",
-    "build:api": "esbuild api/index.ts --outfile=dist/api.js --platform=node --target=node20 --format=cjs --sourcemap --bundle --packages=external",
-    "start": "node build/api/index.js",
+    "build": "node esbuild.js",
+    "start": "node dist/api.js",
     "watch": "nodemon"
   },
   "author": "",
