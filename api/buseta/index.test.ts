@@ -40,13 +40,13 @@ describe("getBusETAs", () => {
         minutes: 5,
         routeID: "D70",
         vehicleID: "123",
-        directionText: "South to Farragut Sq",
+        directionText: "Farragut Sq",
       },
       {
         minutes: 10,
         routeID: "D70",
         vehicleID: "456",
-        directionText: "South to Farragut Sq",
+        directionText: "Farragut Sq",
       },
     ];
 

@@ -10,7 +10,7 @@ type Train = {
   Line: string;
   LocationCode: string;
   LocationName: string;
-  Min: string;
+  Min?: string;
 };
 
 export type TrainETA = {
@@ -29,7 +29,7 @@ const buildTrainRequestUrl = (stationIDs: string[]): string => {
 
 const convertTrainResponseToTrainETA = (trains: Train[]): TrainETA[] => {
   return trains.map((train) => ({
-    minutes: Number(train.Min),
+    minutes: Number(train.Min) || 0,
     line: train.Line,
     destination: train.Destination,
     carCount: Number(train.Car),

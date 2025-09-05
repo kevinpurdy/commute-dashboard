@@ -31,7 +31,7 @@ export type CommuteDataResponse = {
 app.get("/api/commute-data", async (req, res) => {
   const responseBody = await cacheApiResponse<CommuteDataResponse>(
     "/api/commute-data",
-    60,
+    10,
     async () => {
       const busETAs = await getBusETAs({ stopIDs: config.wmataBusStopIDs });
       const trainETAs = await getTrainEtas({

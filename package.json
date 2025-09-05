@@ -4,13 +4,15 @@
   "main": "index.js",
   "scripts": {
     "test": "npx jest",
-    "build": "npm run build:api && npm run build:frontend",
+    "build": "npm run build:api && npm run build:frontend && npm run build:styles",
     "build:api": "node esbuild.api.js",
     "build:frontend": "node esbuild.frontend.js",
+    "build:styles": "sass styles/main.scss public/styles.css",
     "start": "node dist/api.js",
-    "watch": "concurrently \"npm run watch:api\" \"npm run watch:frontend\"",
+    "watch": "concurrently \"npm run watch:api\" \"npm run watch:frontend\" \"npm run watch:styles\"",
     "watch:api": "nodemon",
-    "watch:frontend": "node esbuild.frontend.js --watch"
+    "watch:frontend": "node esbuild.frontend.js --watch",
+    "watch:styles": "sass --watch styles/main.scss public/styles.css"
   },
   "author": "",
   "license": "ISC",
@@ -28,6 +30,7 @@
     "nock": "^14.0.10",
     "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
+    "sass": "^1.92.0",
     "ts-jest": "^29.4.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"

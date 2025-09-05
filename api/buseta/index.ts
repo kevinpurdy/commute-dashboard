@@ -30,7 +30,10 @@ const convertPredicationsIntoBusEta = (predictions: Prediction[]): BusETA[] => {
     minutes: prediction.Minutes,
     routeID: prediction.RouteID,
     vehicleID: prediction.VehicleID,
-    directionText: prediction.DirectionText,
+    directionText: prediction.DirectionText.replace(
+      /(North|South|East|West) to /,
+      "",
+    ),
   }));
 };
 

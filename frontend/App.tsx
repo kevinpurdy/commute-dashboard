@@ -3,6 +3,8 @@ import { CommuteDataResponse } from "../api";
 import { fetchCommuteData } from "./api-client";
 
 import { BusETAList } from "./BusETA";
+import { CabiStationList } from "./CabiStations";
+import { TrainETAList } from "./TrainETA";
 
 const App: React.FC = () => {
   const [commuteDataResponse, setCommuteDataResponse] = useState<
@@ -19,18 +21,18 @@ const App: React.FC = () => {
     fetchAndUpdateCommuteData();
     const intervalId = setInterval(() => {
       fetchAndUpdateCommuteData();
-    }, 60 * 1000);
+    }, 10 * 1000);
     return () => {
       clearInterval(intervalId);
     };
   }, []);
 
   return (
-    <div>
-      <h1>Commute Dashboard</h1>
-      <BusETAList busETAs={commuteDataResponse?.busETAs || []} />
-      <p>Frontend is ready with vigor!</p>
-    </div>
+    <>
+      <BusETAList busETAs={commuteDataResponse?.busETAs} />
+      <TrainETAList trainETAs={commuteDataResponse?.trainETAs} />
+      <CabiStationList cabiStations={commuteDataResponse?.cabiStations} />
+    </>
   );
 };
 

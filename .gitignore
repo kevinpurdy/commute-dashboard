@@ -32,7 +32,9 @@ logs/
 dist/
 build/
 public/app.js
+public/styles.css
 *.js.map
+*.css.map
 *.d.ts
 
 # Environment variables
