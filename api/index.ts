@@ -23,7 +23,7 @@ app.use(express.json());
 
 app.use(express.static(path.join(process.cwd(), "public")));
 
-type CommuteDataResponse = {
+export type CommuteDataResponse = {
   busETAs: BusETA[];
   trainETAs: TrainETA[];
   cabiStations: CabiStation[];
