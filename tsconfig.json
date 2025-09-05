@@ -6,6 +6,7 @@
     "noImplicitAny": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "target": "es6"
+    "target": "es6",
+    "jsx": "react-jsx",
   }
 }

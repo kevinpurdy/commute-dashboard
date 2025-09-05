@@ -13,12 +13,15 @@ import {
 import express from "express";
 import { createServer } from "http";
 import morgan from "morgan";
+import path from "path";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(morgan("common"));
 app.use(express.json());
+
+app.use(express.static(path.join(process.cwd(), "public")));
 
 type CommuteDataResponse = {
   busETAs: BusETA[];

@@ -31,6 +31,7 @@ logs/
 # Build artifacts (TypeScript compilation output)
 dist/
 build/
+public/app.js
 *.js.map
 *.d.ts
 
