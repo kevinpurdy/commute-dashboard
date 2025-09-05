@@ -1,28 +1,47 @@
 import "dotenv/config";
 
 import config from "./config";
+import { cacheApiResponse } from "./cache";
 
-import { getBusETAs } from "./buseta";
-import { getTrainEtas } from "./metroeta";
-import { getCabiStationStatuses } from "./cabistatus";
+import { BusETA, getBusETAs } from "./buseta";
+import { getTrainEtas, TrainETA } from "./metroeta";
+import {
+  getCabiStationStatuses,
+  StationStatus as CabiStation,
+} from "./cabistatus";
 
 import express from "express";
 import { createServer } from "http";
+import morgan from "morgan";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(morgan("common"));
 app.use(express.json());
 
-app.get("/", async (req, res) => {
-  const busETAs = await getBusETAs({ stopIDs: config.wmataBusStopIDs });
-  const trainETAs = await getTrainEtas({
-    stationIDs: config.metroRailStationCodes,
-  });
-  const cabiStations = await getCabiStationStatuses({
-    stationIDs: config.cabiStationIDs,
-  });
-  res.send({ busETAs, trainETAs, cabiStations });
+type CommuteDataResponse = {
+  busETAs: BusETA[];
+  trainETAs: TrainETA[];
+  cabiStations: CabiStation[];
+};
+app.get("/api/commute-data", async (req, res) => {
+  const responseBody = await cacheApiResponse<CommuteDataResponse>(
+    "/api/commute-data",
+    60,
+    async () => {
+      const busETAs = await getBusETAs({ stopIDs: config.wmataBusStopIDs });
+      const trainETAs = await getTrainEtas({
+        stationIDs: config.metroRailStationCodes,
+      });
+      const cabiStations = await getCabiStationStatuses({
+        stationIDs: config.cabiStationIDs,
+      });
+      return { busETAs, trainETAs, cabiStations };
+    },
+  );
+
+  res.send(responseBody);
 });
 
 const server = createServer(app);
