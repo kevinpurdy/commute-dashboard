@@ -36,6 +36,7 @@ public/styles.css
 *.js.map
 *.css.map
 *.d.ts
+docker-compose.yml
 
 # Environment variables
 .env

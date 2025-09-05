@@ -1,0 +1,36 @@
+This is an application that displays a dashboard showing when nearby buses and trains are expected and how many bikes are in nearby stations. It gets data from the following places:
+
+- [The Washington Metropolitan Area Transit Authority API](https://developer.wmata.com/)
+- [Capital Bikeshare System Data](https://capitalbikeshare.com/system-data)
+
+I build this to give myself a quick dashboard to reference when thinking about how I want to get to work. The most essential questions it answers:
+
+1. Is there a nearby bus I can catch?
+2. Are there bikes in the bikeshare station?
+3. Are there trains running on time?
+
+## Getting started
+
+Setting up this app requires setting a few environment variables:
+
+- `WMATA_API_KEY`: The API key for the WMATA API
+- `WMATA_BUS_STOP_IDS`: The stop IDs for the bus stops near you
+- `METRO_RAIL_STATION_CODES`: The rails station codes for train stations new you
+- `CABI_STATION_IDS`: The station IDs for nearby CaBi stations
+
+This app uses `dotenv` so you can set these in a `.env` file.
+
+After the environment is setup you can start things up like this:
+
+```
+npm run build
+npm start
+```
+
+There is also a development mode that will watch for changes and re-build in response:
+
+```
+npm run watch
+```
+
+When everything is running the app should be available on `http://localhost:3000/`
