@@ -3,4 +3,5 @@ export default {
   metroRailStationCodes: (process.env.METRO_RAIL_STATION_CODES || "").split(
     ",",
   ),
+  cabiStationIDs: (process.env.CABI_STATION_IDS || "").split(","),
 };

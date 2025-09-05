@@ -3,10 +3,11 @@ require("dotenv").config();
 import config from "./config";
 
 import { getBusETAs } from "./buseta";
+import { getTrainEtas } from "./metroeta";
+import { getCabiStationStatuses } from "./cabistatus";
 
 import express from "express";
 import { createServer } from "http";
-import { getTrainEtas } from "./metroeta";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,7 +19,10 @@ app.get("/", async (req, res) => {
   const trainETAs = await getTrainEtas({
     stationIDs: config.metroRailStationCodes,
   });
-  res.send({ busETAs, trainETAs });
+  const cabiStations = await getCabiStationStatuses({
+    stationIDs: config.cabiStationIDs,
+  });
+  res.send({ busETAs, trainETAs, cabiStations });
 });
 
 const server = createServer(app);
