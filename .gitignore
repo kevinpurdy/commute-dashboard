@@ -1,0 +1,46 @@
+
+nodejs and typescript gitignore
+
+
+All
+Videos
+Images
+Short videos
+Forums
+Shopping
+More
+Tools
+AI Overview
+A .gitignore file for a Node.js project using TypeScript typically includes common exclusions for Node.js environments and additional exclusions specific to TypeScript compilation and development.
+Here is a common .gitignore configuration for a Node.js and TypeScript project:
+Code
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.eslintcache
+.node_repl_history
+
+# Logs
+logs/
+*.log
+
+# Build artifacts (TypeScript compilation output)
+dist/
+build/
+*.js.map
+*.d.ts
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE and OS specific files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
