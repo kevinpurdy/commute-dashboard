@@ -43,7 +43,12 @@ export const getTrainEtas = async ({
 }): Promise<TrainETA[]> => {
   const url = buildTrainRequestUrl(stationIDs);
   const apiResponse = await fetch(url).then((response) => response.json());
-  const trains = apiResponse["Trains"] as Train[];
+  const trains = apiResponse["Trains"] as Train[] | undefined;
+
+  if (!trains) {
+    return [];
+  }
+
   return convertTrainResponseToTrainETA(trains)
     .sort((a, b) => a.minutes - b.minutes)
     .slice(0, config.maxMetroTrainETACount);

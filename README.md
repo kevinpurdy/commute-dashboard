@@ -14,9 +14,12 @@ I build this to give myself a quick dashboard to reference when thinking about h
 Setting up this app requires setting a few environment variables:
 
 - `WMATA_API_KEY`: The API key for the WMATA API
-- `WMATA_BUS_STOP_IDS`: The stop IDs for the bus stops near you
-- `METRO_RAIL_STATION_CODES`: The rails station codes for train stations new you
-- `CABI_STATION_IDS`: The station IDs for nearby CaBi stations
+- `WMATA_BUS_STOP_IDS_HOME`: The stop IDs for the bus stops near your home
+- `WMATA_BUS_STOP_IDS_WORK`: The stop IDs for the bus stops near your work
+- `METRO_RAIL_STATION_CODES_HOME`: The rails station codes for train stations new your home
+- `METRO_RAIL_STATION_CODES_WORK`: The rails station codes for train stations new your work
+- `CABI_STATION_IDS_HOME`: The station IDs for nearby CaBi stations
+- `CABI_STATION_IDS_WORK`: The station IDs for nearby CaBi stations
 
 This app uses `dotenv` so you can set these in a `.env` file.
 

@@ -23,22 +23,40 @@ app.use(express.json());
 
 app.use(express.static(path.join(process.cwd(), "public")));
 
+type Location = "home" | "work";
+
 export type CommuteDataResponse = {
   busETAs: BusETA[];
   trainETAs: TrainETA[];
   cabiStations: CabiStation[];
 };
-app.get("/api/commute-data", async (req, res) => {
+
+const parseLocationParam = (param: string): Location | null => {
+  if (param === "home" || param === "work") {
+    return param;
+  }
+  return null;
+};
+
+app.get("/api/commute-data/:location", async (req, res) => {
+  const location = parseLocationParam(req.params.location);
+
+  if (!location) {
+    return res.status(404).json({ message: "Location not found" });
+  }
+
   const responseBody = await cacheApiResponse<CommuteDataResponse>(
-    "/api/commute-data",
+    `/api/commute-data/${location}`,
     10,
     async () => {
-      const busETAs = await getBusETAs({ stopIDs: config.wmataBusStopIDs });
+      const busETAs = await getBusETAs({
+        stopIDs: config.wmataBusStopIDs[location],
+      });
       const trainETAs = await getTrainEtas({
-        stationIDs: config.metroRailStationCodes,
+        stationIDs: config.metroRailStationCodes[location],
       });
       const cabiStations = await getCabiStationStatuses({
-        stationIDs: config.cabiStationIDs,
+        stationIDs: config.cabiStationIDs[location],
       });
       return { busETAs, trainETAs, cabiStations };
     },

@@ -60,6 +60,7 @@ export const getCabiStationStatuses = async ({
 }): Promise<StationStatus[]> => {
   const stationNamesById = await getStationNamesById();
   const stationStatusesById = await getStationStatusesById();
+  console.log(stationIDs);
   return stationIDs.map((stationID) => {
     const stationStatusResponse = stationStatusesById[stationID];
     return {

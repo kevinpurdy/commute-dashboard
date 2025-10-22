@@ -6,6 +6,34 @@ body {
   max-width: 1024px;
 }
 
+.location-toggle {
+  display: flex;
+
+  .location-toggle-button {
+    padding: 0.5rem 1rem;
+    margin-top: -1rem;
+    margin-right: 2rem;
+
+    color: #000;
+    background-color: #fff;
+    text-decoration: none;
+    outline: #000 2px solid;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .location-toggle-button-active {
+    color: #fff;
+    background-color: #000;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
 table {
   width: 100%;
   border-collapse: collapse;

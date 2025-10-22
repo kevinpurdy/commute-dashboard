@@ -40,7 +40,12 @@ const convertPredicationsIntoBusEta = (predictions: Prediction[]): BusETA[] => {
 const getBusETAsForStop = async (stopID: string): Promise<BusETA[]> => {
   const url = buildPredictionsRequestUrl(stopID);
   const apiResponse = await fetch(url).then((response) => response.json());
-  const predictions = apiResponse["Predictions"] as Prediction[];
+  const predictions = apiResponse["Predictions"] as Prediction[] | undefined;
+
+  if (!predictions) {
+    return [];
+  }
+
   return convertPredicationsIntoBusEta(predictions);
 };
 
