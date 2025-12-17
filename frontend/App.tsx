@@ -8,17 +8,12 @@ import { CabiStationList } from "./CabiStations";
 import { TrainETAList } from "./TrainETA";
 
 const App: React.FC = () => {
-  const [currentLocation, setCurrentLocation] = useState<string>(() => {
-    const currentHour = new Date().getHours();
-    if (currentHour > 12) {
-      return "work";
-    } else {
-      return "home";
-    }
-  });
+  const [currentLocation, setCurrentLocation] = useState<string>("home");
+
   const [commuteDataResponse, setCommuteDataResponse] = useState<
     CommuteDataResponse | undefined
   >(undefined);
+
 
   const fetchAndUpdateCommuteData = (location: string) => {
     fetchCommuteData(location).then((apiResponse) =>
