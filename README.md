@@ -20,10 +20,17 @@ Setting up this app requires setting a few environment variables:
 - `METRO_RAIL_STATION_CODES_WORK`: The rails station codes for train stations new your work
 - `CABI_STATION_IDS_HOME`: The station IDs for nearby CaBi stations
 - `CABI_STATION_IDS_WORK`: The station IDs for nearby CaBi stations
+- `PORT`: _Optional_, if you want other than the default (3000).
 
 This app uses `dotenv` so you can set these in a `.env` file.
 
-After the environment is setup you can start things up like this:
+## Prerequisites
+
+- Node.js **18.20 or newer**
+- npm (comes with Node)
+- `esbuild` (available in npm, via Linux repos, or `brew install esbuild` on Mac)
+
+Run `npm install` to set up your environment. After the environment is setup you can start things up like this:
 
 ```
 npm run build
